@@ -2,7 +2,7 @@ name: Telegram alerting
 
 on:
   pull_request:
-    types: [opened]
+    types: [closed]
     branches:
     - develop
     - master

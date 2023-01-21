@@ -7,7 +7,7 @@ class User(AbstractUser):
                               verbose_name='Email',
                               help_text='Укажите email',
                               unique=True,
-                              null=False)
+                              )
     phone_number = models.IntegerField(blank=True,
                                        verbose_name='Телефона',
                                        help_text='Укажите номер телефона')

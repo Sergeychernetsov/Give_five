@@ -1,5 +1,4 @@
 from django.db import models
-from ..users.models import User
 
 
 QUESTION_TYPES = (
@@ -32,7 +31,6 @@ class Question(models.Model):
     )
     answers = models.ManyToManyField(
         Answer,
-        null=True,
         blank=True,
         verbose_name='Список возможных ответов'
     )
@@ -49,7 +47,6 @@ class Theme(models.Model):
     description = models.CharField(max_length=255, verbose_name='Описание темы')
     questions = models.ManyToManyField(
         Question,
-        null=True,
         blank=True,
         verbose_name='Список вопросов'
     )

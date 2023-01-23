@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from exams.models import Theme
@@ -10,7 +9,7 @@ class Monetization(models.Model):
         User,
         on_delete=models.CASCADE,
     )
-    # payment = 
+    # payment =
 
 
 class Result(models.Model):
@@ -40,6 +39,26 @@ class Result(models.Model):
         ordering = ["-pub_date"]
         verbose_name = 'Результат'
         verbose_name_plural = 'Результаты'
+
+QUESTION_CHOISES = (
+    ('single', 'Единственный правильный ответ'),
+    ('multiple', 'Несколько правильных ответов'),
+    ('insertion', 'Ввод ответов через пробел'),
+    ('correspond', 'Соотнесение вопросов и ответов'),
+)
+
+GRADE_CHOISES = (
+    ('junior', '1-4 класс'),
+    ('five', '5 класс'),
+    ('six', '6 класс'),
+    ('seven', '7 класс'),
+    ('eight', '8 класс'),
+    ('nine', '9 класс'),
+    ('oge', 'ОГЭ'),
+    ('ege', 'ЕГЭ'),
+)
+
+user = get_user_model()
 
 
 class Documentation(models.Model):

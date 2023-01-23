@@ -1,6 +1,4 @@
 from django.db import models
-from ..users.models import User
-
 
 QUESTION_TYPES = (
     ('one_answer', 'Единственный возможный ответ'),

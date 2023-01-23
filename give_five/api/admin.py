@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from .models import Theme
+from .models import Documentation
 
-class ThemeAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("title",)}
 
-admin.register(Theme, ThemeAdmin)
+@admin.register(Documentation)
+class DocumentationAdmin(admin.ModelAdmin):
+    list_display = ('key', 'description',)
+    list_editable = ('description', )

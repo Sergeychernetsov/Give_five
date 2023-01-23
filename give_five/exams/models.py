@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+
 user = get_user_model()
 
 QUESTION_CHOISES = (
@@ -84,6 +85,7 @@ class Theme(models.Model):
         verbose_name='Описание теста',
         help_text='Введите описания для данного теста',
     )
+
     theme_slug = models.SlugField(
         max_length=256,
         unique=True,
@@ -96,6 +98,7 @@ class Theme(models.Model):
 
     def __str__(self):
         return self.title
+
 
     class Meta:
         verbose_name = 'Тест'
@@ -173,6 +176,7 @@ class Monetization(models.Model):
         'Course',
         help_text='Ссылка на курс',
         on_delete=models.CASCADE
+
     )
 
 

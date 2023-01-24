@@ -1,6 +1,65 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from exams.models import Answer, Question, Theme
+from users.models import User
+
+
+class SignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email',)
+
+    def validate_exist(self, attrs):
+        username = attrs.get('username')
+        if_user = User.objects.filter(username=username)
+        if if_user.exists():
+            raise ValidationError('Пользователь с таким именем уже существует')
+        email = attrs.get('email')
+        if_email = User.objects.filter(email=email)
+        if if_email.exists():
+            raise ValidationError('Почта уже использовалась')
+
+    def validate_username(self, value):
+        if value == 'me':
+            raise serializers.ValidationError(
+                'Имя пользователя "me" не разрешено.'
+            )
+        return value
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=True)
+    confirmation_code = serializers.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'confirmation_code',)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=True)
+    email = serializers.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+        )
+
+
+class AdminUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+        )
 
 
 class AnswerSerializer(serializers.ModelSerializer):

@@ -1,17 +1,17 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from exams.models import Answer, Question, Theme
+from exams.models import Question, Theme
 from give_five import settings
 from users.models import User
 from .email import send_confirmation_code
-from .serializers import AnswerSerializer, QuestionSerializer, QuestionCheckSerializer, ThemeSerializer, \
+from .serializers import QuestionSerializer, QuestionCheckSerializer, ThemeSerializer, \
     AdminUserSerializer, SignUpSerializer, TokenSerializer
 
 

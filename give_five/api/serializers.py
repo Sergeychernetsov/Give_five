@@ -40,6 +40,7 @@ class TokenSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
     email = serializers.CharField(required=True)
+    phone_number = serializers.IntegerField(required=True)
 
     class Meta:
         model = User
@@ -48,6 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
+            'phone_number',
         )
 
 

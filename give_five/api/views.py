@@ -1,7 +1,8 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
-from rest_framework import status, viewsets, filters
+from rest_framework import filters
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,8 +12,8 @@ from exams.models import Question, Theme
 from give_five import settings
 from users.models import User
 from .email import send_confirmation_code
-from .serializers import QuestionSerializer, QuestionCheckSerializer, ThemeSerializer, \
-    AdminUserSerializer, SignUpSerializer, TokenSerializer
+from .serializers import QuestionSerializer, QuestionCheckSerializer, ThemeSerializer, SignUpSerializer, \
+    TokenSerializer, AdminUserSerializer
 
 
 class ThemeViewset(viewsets.ModelViewSet):
@@ -111,6 +112,6 @@ class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = AdminUserSerializer
     # permission_classes =
     filter_backends = (filters.SearchFilter,)
-    lookup_field = 'username'
+    lookup_field = 'email'
     lookup_value_regex = r'[\w\@\.\+\-]+'
-    search_fields = ('username',)
+    search_fields = ('email',)
